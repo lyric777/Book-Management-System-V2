@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <title>{% block title %}{% endblock %}</title>
+  <link rel="stylesheet" href="../static/layui/css/layui.css">
+  <script src="https://cdn.staticfile.org/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://cdn.staticfile.org/popper.js/1.12.5/umd/popper.min.js"></script>
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/4.1.0/js/bootstrap.min.js"></script>
+  <style>
+      .alert{position:relative;padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem}
+      .close{position:absolute;top:0;right:0;padding:.75rem 1.25rem;color:inherit}
+      .alert-warning{color:#856404;background-color:#fff3cd;border-color:#ffeeba}
+      .close{float:right;font-size:1.5rem;font-weight:700;line-height:1;color:#000;text-shadow:0 1px 0 #fff;opacity:.5}
+      .close:focus,.close:hover{color:#000;text-decoration:none;opacity:.75}
+      .close:not(:disabled):not(.disabled){cursor:pointer}
+      button.close{padding:0;background-color:transparent;border:0;-webkit-appearance:none}
+      .close{padding:1rem;margin:-1rem -1rem -1rem auto}
+      .alert-dismissible .close{position:absolute;top:0;right:0;padding:.75rem 1.25rem;color:inherit}
+  </style>
+  {% block head %}{% endblock %}
+  <style>{% block style %}{% endblock %}</style>
+</head>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin">
+  <div class="layui-header">
+    <a href="{{ url_for('index') }}"><div class="layui-logo">图书管理系统</div></a>
+    <!-- 头部区域（可配合layui已有的水平导航） -->
+    <ul class="layui-nav layui-layout-right">
+      <li class="layui-nav-item">
+        <a href="javascript:;">
+          <img src="../static/icon.jpg" class="layui-nav-img">
+          {{ name }}
+        </a>
+        <dl class="layui-nav-child">
+          <dd><a href="{{ url_for('user_info', id=current_user.admin_id) }}">个人信息</a></dd>
+          <dd><a href="{{ url_for('change_password') }}">修改密码</a></dd>
+        </dl>
+      </li>
+      <li class="layui-nav-item"><a href="{{ url_for('logout') }}">退出登录</a></li>
+    </ul>
+  </div>
+
+  <div class="layui-side layui-bg-black">
+    <div class="layui-side-scroll">
+      <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+      <ul class="layui-nav layui-nav-tree"  lay-filter="test">
+        <li class="layui-nav-item">
+          <a class="" href="javascript:;">图书管理</a>
+          <dl class="layui-nav-child">
+             <dd><a href="{{ url_for('storage') }}">入库管理</a></dd>
+             <dd><a href="{{ url_for('borrow') }}">学生借书</a></dd>
+             <dd><a href="{{ url_for('return_book') }}">学生还书</a></dd>
+             <dd><a href="javascript:;">图书注销</a></dd>
+           </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="javascript:;">信息设置</a>
+          <dl class="layui-nav-child">
+             <dd><a href="{{ url_for('change_info') }}">管理员信息设置</a></dd>
+             <dd><a href="javascript:;">图书馆信息设置</a></dd>
+             <dd><a href="javascript:;">图书词库设置</a></dd>
+          </dl>
+        </li>
+        <li class="layui-nav-item">
+          <a href="{{ url_for('search_book') }}">图书信息查询</a>
+        </li>
+        <li class="layui-nav-item">
+          <a href="{{ url_for('search_student') }}">学生信息查询</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="layui-body">
+    <!-- 内容主体区域 -->
+    <div class="layui-card layui-row layui-col-space10" style="margin:15px 10px;width:100%;">
+        {% for message in get_flashed_messages() %}
+        <div class="alert alert-warning">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+                {{ message }}
+        </div>
+        {% endfor %}
+        {% block card %}{% endblock %}
+        <div class="layui-card-body">
+        {% block body %}
+        {% endblock %}
+        </div>
+    </div>
+  </div>
+
+  <div class="layui-footer">
+    Copyright 2019 Construct&nbsp;&nbsp;|&nbsp;&nbsp;版权所有:信息162许致立
+  </div>
+</div>
+<script src="../static/layui/layui.js"></script>
+<script>
+
+layui.use('element', function(){
+  var element = layui.element;
+  element.init();
+
+
+});
+</script>
+
+{% block script %}
+
+{% endblock %}
+
+</body>
+</html>

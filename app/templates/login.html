@@ -1,0 +1,23 @@
+{% extends "base-user.html" %}
+{% block title %}欢迎使用图书管理系统{% endblock %}
+
+{% block body %}
+<div class="login-main">
+    <header class="layui-elip">登录</header>
+    <form class="layui-form" method="post">
+        {{ form.csrf_token }}
+        <div class="layui-input-inline">
+            {{ form.account(class="layui-input",placeholder="账号") }}
+        </div>
+        <div class="layui-input-inline">
+            {{ form.password(class="layui-input",placeholder="密码") }}
+        </div>
+        <div class="layui-input-inline login-btn">
+            {{ form.submit(class="layui-btn") }}
+        </div>
+        <hr/>
+        <p><a href="javascript:;" class="fr">忘记密码请与系统管理员联系</a></p>
+    </form>
+
+</div>
+{% endblock %}

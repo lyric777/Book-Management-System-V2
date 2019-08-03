@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}管理员信息设置{% endblock %}
+
+{% block body %}
+<fieldset class="layui-elem-field layui-field-title">
+  <legend>修改个人信息</legend>
+  <div class="layui-field-box" style="font-size: medium;line-height: 30px;">
+      <br />
+      <form class="layui-form" method="post">
+        {{ form.csrf_token }}
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:150px">账号：</label>
+            <div class="layui-input-block">
+                <input type="text" value="{{ id }}" readonly="readonly" class="layui-input" style="width:40%">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:150px">{{ form.name.label }}：</label>
+            <div class="layui-input-block">
+                {{ form.name(class="layui-input", style="width:40%") }}
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label" style="width:150px">权限：</label>
+            <div class="layui-input-block">
+                <input type="text" value="{{ right }}" readonly="readonly" class="layui-input" style="width:40%">
+                <span style="font-size:16px;font-style: italic;color:#BFBFBF">账号、权限无法修改，若要修改请联系系统管理员</span>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block" style="margin-left:180px">
+                <div class="layui-input-inline login-btn">
+                    {{ form.submit(class="layui-btn") }}
+                </div>
+            </div>
+        </div>
+      </form>
+  </div>
+</fieldset>
+{% endblock %}
