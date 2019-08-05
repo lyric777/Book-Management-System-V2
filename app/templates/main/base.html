@@ -25,7 +25,7 @@
 <body class="layui-layout-body">
 <div class="layui-layout layui-layout-admin">
   <div class="layui-header">
-    <a href="{{ url_for('index') }}"><div class="layui-logo">图书管理系统</div></a>
+    <a href="{{ url_for('main.index') }}"><div class="layui-logo">图书管理系统</div></a>
     <!-- 头部区域（可配合layui已有的水平导航） -->
     <ul class="layui-nav layui-layout-right">
       <li class="layui-nav-item">
@@ -34,11 +34,11 @@
           {{ name }}
         </a>
         <dl class="layui-nav-child">
-          <dd><a href="{{ url_for('user_info', id=current_user.admin_id) }}">个人信息</a></dd>
-          <dd><a href="{{ url_for('change_password') }}">修改密码</a></dd>
+          <dd><a href="{{ url_for('main.user_info', id=current_user.admin_id) }}">个人信息</a></dd>
+          <dd><a href="{{ url_for('main.change_password') }}">修改密码</a></dd>
         </dl>
       </li>
-      <li class="layui-nav-item"><a href="{{ url_for('logout') }}">退出登录</a></li>
+      <li class="layui-nav-item"><a href="{{ url_for('main.logout') }}">退出登录</a></li>
     </ul>
   </div>
 
@@ -49,25 +49,25 @@
         <li class="layui-nav-item">
           <a class="" href="javascript:;">图书管理</a>
           <dl class="layui-nav-child">
-             <dd><a href="{{ url_for('storage') }}">入库管理</a></dd>
-             <dd><a href="{{ url_for('borrow') }}">学生借书</a></dd>
-             <dd><a href="{{ url_for('return_book') }}">学生还书</a></dd>
+             <dd><a href="{{ url_for('main.storage') }}">入库管理</a></dd>
+             <dd><a href="{{ url_for('main.borrow') }}">学生借书</a></dd>
+             <dd><a href="{{ url_for('main.return_book') }}">学生还书</a></dd>
              <dd><a href="javascript:;">图书注销</a></dd>
            </dl>
         </li>
         <li class="layui-nav-item">
           <a href="javascript:;">信息设置</a>
           <dl class="layui-nav-child">
-             <dd><a href="{{ url_for('change_info') }}">管理员信息设置</a></dd>
+             <dd><a href="{{ url_for('main.change_info') }}">管理员信息设置</a></dd>
              <dd><a href="javascript:;">图书馆信息设置</a></dd>
              <dd><a href="javascript:;">图书词库设置</a></dd>
           </dl>
         </li>
         <li class="layui-nav-item">
-          <a href="{{ url_for('search_book') }}">图书信息查询</a>
+          <a href="{{ url_for('main.search_book') }}">图书信息查询</a>
         </li>
         <li class="layui-nav-item">
-          <a href="{{ url_for('search_student') }}">学生信息查询</a>
+          <a href="{{ url_for('main.search_student') }}">学生信息查询</a>
         </li>
       </ul>
     </div>

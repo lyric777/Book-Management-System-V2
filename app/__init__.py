@@ -15,7 +15,7 @@ login_manager.login_view = 'main.login'
 login_manager.login_message = u"请先登录。"
 
 
-def create_app(config_name):
+def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = 'hard to guess string'
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///' + os.path.join(basedir, 'data.sqlite')

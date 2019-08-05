@@ -21,7 +21,7 @@ def login():
             session['admin_id'] = user.admin_id
             session['name'] = user.admin_name
             return redirect(url_for('.index'))
-    return render_template('login.html', form=form)
+    return render_template('main/login.html', form=form)
 
 
 @main.route('/logout')
