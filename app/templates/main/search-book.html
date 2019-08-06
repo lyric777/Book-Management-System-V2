@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 {% block title %}查询图书信息{% endblock %}
 
 {% block card %}<div class="layui-card-header"><h2>查询图书信息</h2></div>{% endblock %}
@@ -73,7 +73,7 @@
                 }
                 else{
                     $.ajax({
-                        url:"{{ url_for('find_book') }}",
+                        url:"{{ url_for('main.find_book') }}",
                         type:"post",
                         data:form,
                         processData:false,

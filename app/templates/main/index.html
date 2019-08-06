@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 {% block title %}首页{% endblock %}\
 {% block head %}
     <script type="text/javascript" src="http://echarts.baidu.com/dist/echarts.js"></script>
@@ -74,7 +74,7 @@
          $.ajax({
          type : "get",
 //       async : true,            //异步请求（同步请求将会锁住浏览器，用户其他操作必须等待请求完成才可以执行）
-         url : "{{ url_for('echarts') }}",    //请求发送
+         url : "{{ url_for('main.echarts') }}",    //请求发送
          dataType : "json",        //返回数据形式为json
          success : function(data) {
              //请求成功时执行该函数内容，result即为服务器返回的json对象

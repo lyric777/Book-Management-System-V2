@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% block title %}库存管理{% endblock %}
 
 {% block card %}
@@ -35,6 +35,7 @@
                 {{ form.submit(class="layui-btn", style="width:100px;font-size:medium") }}
             </div>
         </div>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp这个页面容错失灵了,懒得改啦，不好意思啦(#^.^#)
     </form>
 {% endblock %}
 {% block script %}
@@ -46,7 +47,7 @@
     });
     $(document).ready(function(){
         $("#newbook").on('click',function () {
-            window.location.href="{{ url_for('new_store') }}";
+            window.location.href="{{ url_for('main.new_store') }}";
         })
     });
     

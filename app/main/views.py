@@ -5,7 +5,7 @@ from . import main
 from .forms import Login, SearchBookForm, ChangePasswordForm, EditInfoForm, SearchStudentForm, NewStoreForm, StoreForm, BorrowForm
 from .. import db
 from ..models import Admin, Book, Inventory, Student, ReadBook
-import time
+import time, datetime
 
 
 @main.route('/', methods=['GET', 'POST'])
@@ -35,7 +35,7 @@ def logout():
 @main.route('/index')
 @login_required
 def index():
-    return render_template('index.html', name=session.get('name'))
+    return render_template('main/index.html', name=session.get('name'))
 
 
 @main.route('/echarts')
@@ -63,7 +63,7 @@ def echarts():
 @login_required
 def user_info(id):
     user = Admin.query.filter_by(admin_id=id).first()
-    return render_template('user-info.html', user=user, name=session.get('name'))
+    return render_template('main/user-info.html', user=user, name=session.get('name'))
 
 
 @main.route('/change_password', methods=['GET', 'POST'])
@@ -81,7 +81,7 @@ def change_password():
             return redirect(url_for('.index'))
         else:
             flash(u'原密码输入错误，修改失败！')
-    return render_template("change-password.html", form=form)
+    return render_template("main/change-password.html", form=form)
 
 
 @main.route('/change_info', methods=['GET', 'POST'])
@@ -96,14 +96,14 @@ def change_info():
     form.name.data = current_user.admin_name
     id = current_user.admin_id
     right = current_user.right
-    return render_template('change-info.html', form=form, id=id, right=right)
+    return render_template('main/change-info.html', form=form, id=id, right=right)
 
 
 @main.route('/search_book', methods=['GET', 'POST'])
 @login_required
 def search_book():  # 这个函数里不再处理提交按钮，使用Ajax局部刷新
     form = SearchBookForm()
-    return render_template('search-book.html', name=session.get('name'), form=form)
+    return render_template('main/search-book.html', name=session.get('name'), form=form)
 
 
 @main.route('/books', methods=['POST'])
@@ -141,14 +141,14 @@ def find_book():
 @main.route('/user/book', methods=['GET', 'POST'])
 def user_book():
     form = SearchBookForm()
-    return render_template('user-book.html', form=form)
+    return render_template('main/user-book.html', form=form)
 
 
 @main.route('/search_student', methods=['GET', 'POST'])
 @login_required
 def search_student():
     form = SearchStudentForm()
-    return render_template('search-student.html', name=session.get('name'), form=form)
+    return render_template('main/search-student.html', name=session.get('name'), form=form)
 
 
 def timeStamp(timeNum):
@@ -192,7 +192,7 @@ def find_record():
 @main.route('/user/student', methods=['GET', 'POST'])
 def user_student():
     form = SearchStudentForm()
-    return render_template('user-student.html', form=form)
+    return render_template('main/user-student.html', form=form)
 
 
 @main.route('/storage', methods=['GET', 'POST'])
@@ -226,7 +226,7 @@ def storage():
                     db.session.commit()
                     flash(u'入库成功！')
         return redirect(url_for('.storage'))
-    return render_template('storage.html', name=session.get('name'), form=form)
+    return render_template('main/storage.html', name=session.get('name'), form=form)
 
 
 @main.route('/new_store', methods=['GET', 'POST'])
@@ -251,14 +251,14 @@ def new_store():
                 db.session.commit()
                 flash(u'图书信息添加成功！')
         return redirect(url_for('.new_store'))
-    return render_template('new-store.html', name=session.get('name'), form=form)
+    return render_template('main/new-store.html', name=session.get('name'), form=form)
 
 
 @main.route('/borrow', methods=['GET', 'POST'])
 @login_required
 def borrow():
     form = BorrowForm()
-    return render_template('borrow.html', name=session.get('name'), form=form)
+    return render_template('main/borrow.html', name=session.get('name'), form=form)
 
 
 @main.route('/find_stu_book', methods=['GET', 'POST'])
@@ -321,7 +321,7 @@ def out():
 @login_required
 def return_book():
     form = SearchStudentForm()
-    return render_template('return.html', name=session.get('name'), form=form)
+    return render_template('main/return.html', name=session.get('name'), form=form)
 
 
 @main.route('/find_not_return_book', methods=['GET', 'POST'])

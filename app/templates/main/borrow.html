@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 {% block title %}学生借书{% endblock %}
 
 {% block card %}<div class="layui-card-header"><h2>学生借书</h2></div>{% endblock %}
@@ -62,7 +62,7 @@
               //obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
               //向服务端发送删除指令
                 table.reload('test', {
-                  url: '{{ url_for('out') }}',
+                  url: "{{ url_for('main.out') }}",
                   where: {
                       'barcode': data.barcode,
                       'card': $('#card').val(),
@@ -86,7 +86,7 @@
                 }
                 else{
                     $.ajax({
-                        url:"{{ url_for('find_stu_book') }}",
+                        url:"{{ url_for('main.find_stu_book') }}",
                         type:"post",
                         data:form,
                         processData:false,

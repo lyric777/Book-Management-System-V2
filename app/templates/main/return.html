@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "main/base.html" %}
 {% block title %}学生还书{% endblock %}
 
 {% block card %}<div class="layui-card-header"><h2>学生还书</h2></div>{% endblock %}
@@ -57,7 +57,7 @@
             layer.confirm('确认归还吗？', function(index){
 
                 table.reload('test', {
-                  url: '{{ url_for('bookin') }}',
+                  url: "{{ url_for('main.bookin') }}",
                   where: {
                       'barcode': data.barcode,
                       'card': $('#card').val(),
@@ -80,7 +80,7 @@
                 }
                 else{
                     $.ajax({
-                        url:"{{ url_for('find_not_return_book') }}",
+                        url:"{{ url_for('main.find_not_return_book') }}",
                         type:"post",
                         data:form,
                         processData:false,

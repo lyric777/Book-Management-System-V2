@@ -1,4 +1,4 @@
-{% extends "base-user.html" %}
+{% extends "main/base-user.html" %}
 {% block title %}查询图书信息{% endblock %}
 
 
@@ -75,7 +75,7 @@
                 }
                 else{
                     $.ajax({
-                        url:"{{ url_for('find_book') }}",
+                        url:"{{ url_for('main.find_book') }}",
                         type:"post",
                         data:form,
                         processData:false,

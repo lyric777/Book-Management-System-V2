@@ -1,4 +1,4 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 {% block title %}库存管理{% endblock %}
 
 {% block card %}
@@ -48,6 +48,7 @@
                 {{ form.submit(class="layui-btn", style="width:100px;font-size:medium") }}
             </div>
         </div>
+        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp这个页面容错也失灵啦
     </form>
 {% endblock %}
 {% block script %}
@@ -59,7 +60,7 @@
     });
     $(document).ready(function(){
         $("#storage").on('click',function () {
-            window.location.href="{{ url_for('storage') }}";
+            window.location.href="{{ url_for('main.storage') }}";
         })
     });
 
